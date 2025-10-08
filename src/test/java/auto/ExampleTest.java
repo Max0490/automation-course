@@ -8,6 +8,8 @@ import com.microsoft.playwright.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ExampleTest extends BaseTest {
+
+
     @Test
     void dummyTest() {
         assertTrue(true);
