@@ -9,10 +9,14 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class ScreenShotTests {
@@ -29,6 +33,25 @@ public class ScreenShotTests {
         context = browser.newContext(new Browser.NewContextOptions()
                 .setRecordVideoDir(Paths.get("videos/")));
         page = context.newPage();
+    }
+
+    @Test
+    void testHomePageVisual() throws IOException {
+        page.navigate("https://the-internet.herokuapp.com");
+
+
+        Path actual = Paths.get("actual.png");
+        page.screenshot(new Page.ScreenshotOptions().setPath(actual));
+
+        Path expected = Paths.get("expected.png");
+
+        if (!Files.exists(expected)) {
+            Files.copy(actual, expected);
+            System.out.println("Создал эталонный скрин");
+            return;
+        }
+        long result = Files.mismatch(actual, expected);
+        assertEquals(-1, result);
     }
 
     @Test
