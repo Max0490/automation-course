@@ -1,10 +1,14 @@
 package courseplayw;
 
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
+import java.io.ByteArrayInputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -45,10 +49,27 @@ public class ScreenShotTests {
         return Paths.get(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss")) + "/" + filename);
     }
 
+
     @AfterEach
-    void teardown() {
-        context.close();
-        browser.close();
-        playwright.close();
+    void attachScreenshotOnFailure(TestInfo testInfo) {
+
+        byte[] screenshot = page.screenshot();
+        Allure.addAttachment(
+                "Screenshot - " + testInfo.getDisplayName(),
+                "image/png",
+                new ByteArrayInputStream(screenshot),
+                ".png"
+        );
+
+
+        if (context != null) {
+            context.close();
+        }
+        if (browser != null) {
+            browser.close();
+        }
+        if (playwright != null) {
+            playwright.close();
+        }
     }
 }
