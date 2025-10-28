@@ -61,6 +61,7 @@ public class MobileDragAndDropTest {
                 "}");
 
 
+
         page.waitForTimeout(1000); // Даем время для обновления DOM
 
 
