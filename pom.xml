@@ -41,6 +41,11 @@
             <version>${javafaker.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>
             <version>${s3.version}</version>
