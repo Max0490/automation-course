@@ -11,7 +11,7 @@ public class DragDropPage extends BasePage {
         super(page);
     }
 
-    // Ленивая инициализация компонента
+
     public DragDropArea dragDropArea() {
         if (dragDropArea == null) {
             dragDropArea = new DragDropArea(page);
@@ -19,13 +19,13 @@ public class DragDropPage extends BasePage {
         return dragDropArea;
     }
 
-    // Навигация с цепочкой вызовов
+
     public DragDropPage navigateToDragDropPage() {
         navigateTo(pageUrl);
         return this;
     }
 
-    // Вспомогательные методы для быстрого доступа
+
     public DragDropPage performDragAToB() {
         dragDropArea().dragAToB();
         return this;
@@ -39,7 +39,7 @@ public class DragDropPage extends BasePage {
         return dragDropArea().getTextA();
     }
 
-    // Валидационные методы с цепочками вызовов
+
     public DragDropPage verifyColumnBContainsA() {
         dragDropArea().verifyTextInB("A");
         return this;
@@ -50,7 +50,7 @@ public class DragDropPage extends BasePage {
         return this;
     }
 
-    // Комплексный метод для полного теста
+
     public DragDropPage completeDragAndDropTest() {
         return navigateToDragDropPage()
                 .performDragAToB()

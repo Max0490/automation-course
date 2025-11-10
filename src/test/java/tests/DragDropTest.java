@@ -58,10 +58,10 @@ class DragDropTest {
 
     @Test
     void testCompleteDragAndDropFlow() {
-        // Использование комплексного метода
+
         dragDropPage.completeDragAndDropTest();
 
-        // Дополнительные проверки
+
         assertTrue(dragDropPage.dragDropArea().isTextInBEqualTo("A"));
         assertTrue(dragDropPage.dragDropArea().isTextInAEqualTo("B"));
     }

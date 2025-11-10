@@ -36,7 +36,6 @@ public class DragDropArea {
         return dropZone;
     }
 
-    // Основной метод перетаскивания
     public DragDropArea dragAToB() {
         Locator source = getElementA();
         Locator target = getElementB();
@@ -45,7 +44,7 @@ public class DragDropArea {
         return this;
     }
 
-    // Альтернативный метод с точными координатами
+
     public DragDropArea dragAToBWithCoordinates() {
         Locator source = getElementA();
         Locator target = getElementB();
@@ -60,7 +59,7 @@ public class DragDropArea {
         return this;
     }
 
-    // Методы для получения текста с цепочками вызовов
+
     public String getTextA() {
         return getElementA().textContent().trim();
     }
@@ -69,7 +68,7 @@ public class DragDropArea {
         return getElementB().textContent().trim();
     }
 
-    // Валидационные методы
+
     public boolean isTextInBEqualTo(String expectedText) {
         return getTextB().equals(expectedText);
     }
@@ -78,7 +77,7 @@ public class DragDropArea {
         return getTextA().equals(expectedText);
     }
 
-    // Методы для проверки состояния
+
     public DragDropArea verifyTextInB(String expectedText) {
         if (!isTextInBEqualTo(expectedText)) {
             throw new AssertionError("Expected text in B: " + expectedText +
